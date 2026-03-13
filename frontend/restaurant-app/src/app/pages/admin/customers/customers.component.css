@@ -1,0 +1,17 @@
+.page h1 {
+  margin-bottom: 24px;
+}
+
+.center {
+  margin: 24px auto;
+  display: block;
+}
+
+.empty {
+  padding: 24px;
+  color: #666;
+}
+
+.full-width {
+  width: 100%;
+}

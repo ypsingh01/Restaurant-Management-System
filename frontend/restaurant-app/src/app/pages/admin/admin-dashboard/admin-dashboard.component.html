@@ -1,0 +1,52 @@
+<div class="dashboard">
+  <h1>Dashboard</h1>
+  <p *ngIf="error" class="error">{{ error }}</p>
+  <mat-spinner *ngIf="loading" diameter="40" class="center"></mat-spinner>
+  <div *ngIf="!loading" class="cards">
+    <mat-card>
+      <mat-card-header>
+        <mat-icon>restaurant_menu</mat-icon>
+        <mat-card-title>Menu Items</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <span class="value">{{ menuCount }}</span>
+      </mat-card-content>
+      <mat-card-actions>
+        <a mat-button routerLink="/admin/menu">Manage</a>
+      </mat-card-actions>
+    </mat-card>
+    <mat-card>
+      <mat-card-header>
+        <mat-icon>receipt_long</mat-icon>
+        <mat-card-title>Orders</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <span class="value">{{ orderCount }}</span>
+      </mat-card-content>
+      <mat-card-actions>
+        <a mat-button routerLink="/admin/orders">View</a>
+      </mat-card-actions>
+    </mat-card>
+    <mat-card>
+      <mat-card-header>
+        <mat-icon>people</mat-icon>
+        <mat-card-title>Customers</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <span class="value">{{ customerCount }}</span>
+      </mat-card-content>
+      <mat-card-actions>
+        <a mat-button routerLink="/admin/customers">View</a>
+      </mat-card-actions>
+    </mat-card>
+    <mat-card>
+      <mat-card-header>
+        <mat-icon>attach_money</mat-icon>
+        <mat-card-title>Total Sales</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <span class="value">{{ totalSales | currency }}</span>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

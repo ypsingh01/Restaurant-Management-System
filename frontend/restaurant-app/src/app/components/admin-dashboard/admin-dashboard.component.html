@@ -1,0 +1,98 @@
+<div class="admin-page">
+  <h2>Admin Dashboard</h2>
+
+  <div class="error" *ngIf="errorMessage">{{ errorMessage }}</div>
+
+  <div class="admin-sections">
+    <div class="menu-admin">
+      <h3>Menu Management</h3>
+
+      <form (ngSubmit)="save()">
+        <label>
+          Name:
+          <input [(ngModel)]="form.name" name="name" required />
+        </label>
+        <label>
+          Category:
+          <input [(ngModel)]="form.category" name="category" required />
+        </label>
+        <label>
+          Price:
+          <input type="number" [(ngModel)]="form.price" name="price" required />
+        </label>
+        <label>
+          Available:
+          <input type="checkbox" [(ngModel)]="form.isAvailable" name="isAvailable" />
+        </label>
+        <button type="submit">{{ selectedItem ? 'Update' : 'Add' }} Item</button>
+        <button type="button" (click)="resetForm()">Clear</button>
+      </form>
+
+      <table class="menu-table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Category</th>
+            <th>Price</th>
+            <th>Available</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of menuItems">
+            <td>{{ item.name }}</td>
+            <td>{{ item.category }}</td>
+            <td>{{ item.price | currency }}</td>
+            <td>{{ item.isAvailable ? 'Yes' : 'No' }}</td>
+            <td>
+              <button (click)="edit(item)">Edit</button>
+              <button (click)="delete(item)">Delete</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="order-admin">
+      <h3>Order Management</h3>
+      <table class="orders-table">
+        <thead>
+          <tr>
+            <th>Order #</th>
+            <th>Customer</th>
+            <th>Date</th>
+            <th>Status</th>
+            <th>Total</th>
+            <th>Items</th>
+            <th>Update Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let order of orders">
+            <td>{{ order.orderId }}</td>
+            <td>{{ order.customerId }}</td>
+            <td>{{ order.orderDate | date: 'short' }}</td>
+            <td>{{ order.status }}</td>
+            <td>{{ order.totalAmount | currency }}</td>
+            <td>
+              <ul>
+                <li *ngFor="let item of order.items">
+                  {{ item.menuItemName }} x {{ item.quantity }}
+                </li>
+              </ul>
+            </td>
+            <td>
+              <select [ngModel]="order.status" (ngModelChange)="updateOrderStatus(order, $event)">
+                <option value="Pending">Pending</option>
+                <option value="Preparing">Preparing</option>
+                <option value="Ready">Ready</option>
+                <option value="Delivered">Delivered</option>
+              </select>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+

@@ -1,0 +1,36 @@
+<div class="order-history-page">
+  <h2>Order History (Customer {{ customerId }})</h2>
+  <div class="error" *ngIf="errorMessage">{{ errorMessage }}</div>
+
+  <table *ngIf="orders.length">
+    <thead>
+      <tr>
+        <th>Order #</th>
+        <th>Date</th>
+        <th>Status</th>
+        <th>Total</th>
+        <th>Items</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let order of orders">
+        <td>{{ order.orderId }}</td>
+        <td>{{ order.orderDate | date: 'short' }}</td>
+        <td>{{ order.status }}</td>
+        <td>{{ order.totalAmount | currency }}</td>
+        <td>
+          <ul>
+            <li *ngFor="let item of order.items">
+              {{ item.menuItemName }} x {{ item.quantity }}
+            </li>
+          </ul>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p *ngIf="!orders.length && !errorMessage">
+    No orders found.
+  </p>
+</div>
+

@@ -1,0 +1,53 @@
+<div class="page">
+  <h1>Cart</h1>
+  <mat-card *ngIf="cart.cart().length === 0" class="empty-card">
+    <mat-card-content>
+      <p>Your cart is empty.</p>
+      <a mat-flat-button color="primary" routerLink="/customer/menu">Browse Menu</a>
+    </mat-card-content>
+  </mat-card>
+  <div *ngIf="cart.cart().length">
+    <table mat-table [dataSource]="cart.cart()" class="full-width">
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef>Item</th>
+        <td mat-cell *matCellDef="let row">{{ row.item.name }}</td>
+      </ng-container>
+      <ng-container matColumnDef="price">
+        <th mat-header-cell *matHeaderCellDef>Unit Price</th>
+        <td mat-cell *matCellDef="let row">{{ row.item.price | currency }}</td>
+      </ng-container>
+      <ng-container matColumnDef="quantity">
+        <th mat-header-cell *matHeaderCellDef>Qty</th>
+        <td mat-cell *matCellDef="let row">
+          <button mat-icon-button (click)="cart.setQuantity(row.item.menuItemId, row.quantity - 1)">
+            <mat-icon>remove</mat-icon>
+          </button>
+          {{ row.quantity }}
+          <button mat-icon-button (click)="cart.setQuantity(row.item.menuItemId, row.quantity + 1)">
+            <mat-icon>add</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="total">
+        <th mat-header-cell *matHeaderCellDef>Total</th>
+        <td mat-cell *matCellDef="let row">{{ row.item.price * row.quantity | currency }}</td>
+      </ng-container>
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let row">
+          <button mat-icon-button color="warn" (click)="cart.removeItem(row.item.menuItemId)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="['name', 'price', 'quantity', 'total', 'actions']"></tr>
+      <tr mat-row *matRowDef="let row; columns: ['name', 'price', 'quantity', 'total', 'actions']"></tr>
+    </table>
+    <mat-card class="summary">
+      <mat-card-content>
+        <p class="total">Total: {{ cart.totalPrice() | currency }}</p>
+        <a mat-flat-button color="primary" routerLink="/customer/checkout">Checkout</a>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

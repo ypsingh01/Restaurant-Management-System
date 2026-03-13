@@ -1,0 +1,6 @@
+/* Global styles */
+html, body { height: 100%; margin: 0; }
+body { font-family: Roboto, sans-serif; }
+
+.snackbar-success .mdc-snackbar__surface { background: #2e7d32 !important; }
+.snackbar-error .mdc-snackbar__surface { background: #c62828 !important; }

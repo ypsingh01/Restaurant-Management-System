@@ -1,0 +1,13 @@
+<div class="page">
+  <h1>Checkout</h1>
+  <mat-card>
+    <mat-card-content>
+      <p><strong>Total:</strong> {{ cart.totalPrice() | currency }}</p>
+      <p><strong>Items:</strong> {{ cart.totalItems() }}</p>
+      <button mat-flat-button color="primary" (click)="placeOrder()" [disabled]="submitting || !cart.cart().length">
+        <mat-spinner *ngIf="submitting" diameter="24" class="btn-spinner"></mat-spinner>
+        Place Order
+      </button>
+    </mat-card-content>
+  </mat-card>
+</div>

@@ -1,0 +1,32 @@
+.page h1 {
+  margin-bottom: 24px;
+}
+
+.form-card {
+  margin-bottom: 24px;
+}
+
+.form-card form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  align-items: center;
+}
+
+.form-card mat-form-field {
+  min-width: 140px;
+}
+
+.form-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.table-spinner {
+  margin: 24px auto;
+  display: block;
+}
+
+.full-width {
+  width: 100%;
+}

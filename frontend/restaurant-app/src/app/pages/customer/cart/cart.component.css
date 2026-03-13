@@ -1,0 +1,27 @@
+.page {
+  padding: 24px;
+}
+
+.page h1 {
+  margin-bottom: 24px;
+}
+
+.empty-card {
+  max-width: 400px;
+}
+
+.empty-card p {
+  margin-bottom: 16px;
+  color: #666;
+}
+
+.full-width {
+  width: 100%;
+  margin-bottom: 24px;
+}
+
+.summary .total {
+  font-size: 1.25rem;
+  font-weight: 500;
+  margin-bottom: 16px;
+}

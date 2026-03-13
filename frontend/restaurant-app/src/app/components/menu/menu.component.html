@@ -1,0 +1,50 @@
+<div class="menu-page">
+  <h2>Menu</h2>
+
+  <div class="error" *ngIf="errorMessage">{{ errorMessage }}</div>
+  <p *ngIf="loading">Loading menu…</p>
+
+  <div class="menu-list" *ngIf="!loading && menuItems.length">
+    <div class="menu-item" *ngFor="let item of menuItems">
+      <h3>{{ item.name }}</h3>
+      <p>Category: {{ item.category }}</p>
+      <p>Price: {{ item.price | currency }}</p>
+      <button [disabled]="!item.isAvailable" (click)="addToCart(item)">
+        {{ item.isAvailable ? 'Add to Cart' : 'Unavailable' }}
+      </button>
+    </div>
+  </div>
+
+  <div class="cart" *ngIf="cart.length">
+    <h3>Cart</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Item</th>
+          <th>Qty</th>
+          <th>Price</th>
+          <th>Total</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let c of cart; let i = index">
+          <td>{{ c.item.name }}</td>
+          <td>
+            <input type="number" [(ngModel)]="c.quantity" min="1" />
+          </td>
+          <td>{{ c.item.price | currency }}</td>
+          <td>{{ c.item.price * c.quantity | currency }}</td>
+          <td><button (click)="removeFromCart(i)">Remove</button></td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="total">
+      Total: {{ getTotal() | currency }}
+    </div>
+    <button (click)="placeOrder()">Place Order</button>
+  </div>
+
+  <p *ngIf="!loading && !errorMessage && menuItems.length === 0">No menu items yet. Add items from the Admin page.</p>
+</div>
+
