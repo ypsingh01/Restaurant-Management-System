@@ -1,0 +1,13 @@
+backend/RestaurantAPI/bin/
+backend/RestaurantAPI/obj/
+backend/RestaurantAPI/.vs/
+backend/RestaurantAPI/restaurant.db*
+
+frontend/restaurant-app/node_modules/
+frontend/restaurant-app/dist/
+frontend/restaurant-app/.angular/
+
+.DS_Store
+Thumbs.db
+*.log
+
